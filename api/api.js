@@ -15,20 +15,21 @@ const peopleService = new PeopleService();
 
 // To be implemented!
 v1.put("/people/:id", (request, response) => {
-  try {
-    const id = request.params.id;
-    const people = request.body;
+  const id = request.params.id;
+  const people = request.body;
 
-    const potentialUpdatedPeople = peopleService.updatePeople(id, people);
+  const potentialUpdatedPeople = peopleService.updatePeople(id, people);
 
-    if (potentialUpdatedPeople) {
-      return response.sendStatus(HttpStatus.OK);
-    } else {
-      return response.sendStatus(HttpStatus.NOT_FOUND);
-    }
-  } catch (error) {
-    response.sendStatus(HttpStatus.BAD_REQUEST);
+  if (potentialUpdatedPeople) {
+    return response.sendStatus(HttpStatus.OK);
+  } else {
+    return response.sendStatus(HttpStatus.NOT_FOUND);
   }
+});
+
+v1.get("/people", (request, response) => {
+  const filter = request.query;
+  return response.send(peopleService.getPeople(filter));
 });
 
 module.exports = app;

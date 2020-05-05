@@ -1,5 +1,6 @@
 const fs = require("fs");
 const notFound = -1;
+const empty = 0;
 
 module.exports = class PeopleService {
   constructor() {
@@ -19,6 +20,16 @@ module.exports = class PeopleService {
   }
 
   getPeople(filters) {
-    // To be implemented!
+    if (Object.keys(filters).length === empty) {
+      return this.peoples;
+    } else {
+      const filterKey = Object.keys(filters)[0];
+      const filterValue = Object.values(filters)[0];
+      const filteredPeopleList = this.peoples.filter(
+        (people) => people[filterKey] === filterValue
+      );
+
+      return filteredPeopleList;
+    }
   }
 };
