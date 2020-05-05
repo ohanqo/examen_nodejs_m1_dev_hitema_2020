@@ -6,7 +6,7 @@
   "scripts": {
     "start:rest": "node ./api/index.js",
     "start:websocket": "node ./websocket/index.js",
-    "test": "jest",
+    "test": "jest && npm run eslint",
     "test:watch": "jest --watch",
     "eslint": "./node_modules/.bin/eslint \"./**/*.js\""
   },
